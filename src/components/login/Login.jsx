@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import firebase from "firebase";
-import Timer from "../timer/Timer"
+import Timer from "../timer/Timer";
 
 export default class Login extends React.Component {
   state = {
@@ -17,7 +17,9 @@ export default class Login extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(this.setState({ isAuth: true }))
+      .then((res) => {
+        if(res) this.setState({ isAuth: true });
+      })
       .catch((error) => console.log(error));
   };
   render() {
