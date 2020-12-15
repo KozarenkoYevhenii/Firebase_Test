@@ -1,24 +1,33 @@
 import React from "react";
 import stopwatch from "../../assets/stopwatch.png";
+import firebase from "firebase";
 
 export default class Timer extends React.Component {
   state = {
     desktopTime: 0,
     mobileTime: 0,
-    isMobile: false,
+    isMobile: window.innerWidth < 600,
     mobileIntervalId: null,
     desktopIntervalId: null,
   };
   componentDidMount() {
-    this.updateWindowWidth();
-    window.addEventListener("resize", this.updateWindowWidth);
-  }
-  updateWindowWidth = () => {
-    window.innerWidth > 600
-      ? this.setState({ isMobile: false })
-      : this.setState({ isMobile: true });
+    const db = firebase.database();
+    db.ref("Time").on("value", (elem) => {
+      this.setState({
+        desktopTime: elem.val().desktopTime,
+        mobileTime: elem.val().mobileTime,
+      });
+    });
+    db.ref("Time").push(null);
     this.startTimer();
-  };
+  }
+  componentDidUpdate() {
+    const db = firebase.database();
+    db.ref("Time").update({
+      mobileTime: this.state.mobileTime,
+      desktopTime: this.state.desktopTime,
+    });
+  }
   startTimer = () => {
     this.state.isMobile
       ? (this.mobileIntervalId = setInterval(() => {
