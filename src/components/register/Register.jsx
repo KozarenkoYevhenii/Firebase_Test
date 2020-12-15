@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import firebase from "firebase";
 
 export default class Register extends React.Component {
   state = {
@@ -8,12 +9,20 @@ export default class Register extends React.Component {
     email: "",
     password: "",
   };
-  onInputChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
-    };
-    onRegister = () => {
-        console.log(this.state);
-      }
+  onInputChange = ({ target: { id, value } }) => {
+    this.setState({ [id]: value });
+  };
+  onRegister = () => {
+    const { email, password, firstName, lastName } = this.state;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        const user = firebase.auth().currentUser
+        user.updateProfile({ displayName: firstName + " " + lastName })
+      })
+      .catch((error) => console.log(error));
+  };
   render() {
     return (
       <div>
@@ -46,7 +55,9 @@ export default class Register extends React.Component {
           placeholder="Password"
           onChange={this.onInputChange}
         />
-        <button type="submit" onClick={this.onRegister}>Sign up</button>
+        <button type="submit" onClick={this.onRegister}>
+          Sign up
+        </button>
         <NavLink to="/login">
           Already registered?<span>Log in</span>
         </NavLink>
