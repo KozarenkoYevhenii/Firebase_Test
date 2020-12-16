@@ -20,8 +20,12 @@ export default class Register extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        const user = firebase.auth().currentUser;
-        user.updateProfile({ displayName: firstName + " " + lastName });
+        const userId = firebase.auth().currentUser.uid;
+        firebase
+          .database()
+          .ref("users/" + userId)
+          .set({ firstName, lastName, desktopTime: 0, mobileTime: 0 });
+        
         this.setState({ isAuth: true });
       })
       .catch((error) => console.log(error));

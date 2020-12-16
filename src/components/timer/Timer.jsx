@@ -11,22 +11,21 @@ export default class Timer extends React.Component {
     desktopIntervalId: null,
   };
   componentDidMount() {
-    const db = firebase.database();
-    db.ref("Time").on("value", (elem) => {
-      this.setState({
-        desktopTime: elem.val().desktopTime,
-        mobileTime: elem.val().mobileTime,
+    const userId = firebase.auth().currentUser.uid;
+    firebase.database().ref("users/" + userId).on("value", (elem) => {
+        this.setState({
+          desktopTime: elem.val().desktopTime,
+          mobileTime: elem.val().mobileTime,
+        });
       });
-    });
-    db.ref("Time").push(null);
     this.startTimer();
   }
   componentDidUpdate() {
-    const db = firebase.database();
-    db.ref("Time").update({
-      mobileTime: this.state.mobileTime,
-      desktopTime: this.state.desktopTime,
-    });
+    const userId = firebase.auth().currentUser.uid;
+    firebase.database().ref("users/" + userId).update({
+        mobileTime: this.state.mobileTime,
+        desktopTime: this.state.desktopTime,
+      })
   }
   startTimer = () => {
     this.state.isMobile
