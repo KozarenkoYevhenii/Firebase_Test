@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Firebase_Test/static/css/main.9fde857d.chunk.css",
+    "main.js": "/Firebase_Test/static/js/main.babbdb0a.chunk.js",
+    "main.js.map": "/Firebase_Test/static/js/main.babbdb0a.chunk.js.map",
+    "runtime-main.js": "/Firebase_Test/static/js/runtime-main.4eca9cf1.js",
+    "runtime-main.js.map": "/Firebase_Test/static/js/runtime-main.4eca9cf1.js.map",
+    "static/js/2.7d5917e4.chunk.js": "/Firebase_Test/static/js/2.7d5917e4.chunk.js",
+    "static/js/2.7d5917e4.chunk.js.map": "/Firebase_Test/static/js/2.7d5917e4.chunk.js.map",
+    "static/js/3.8d8e958b.chunk.js": "/Firebase_Test/static/js/3.8d8e958b.chunk.js",
+    "static/js/3.8d8e958b.chunk.js.map": "/Firebase_Test/static/js/3.8d8e958b.chunk.js.map",
+    "index.html": "/Firebase_Test/index.html",
+    "static/css/main.9fde857d.chunk.css.map": "/Firebase_Test/static/css/main.9fde857d.chunk.css.map",
+    "static/js/2.7d5917e4.chunk.js.LICENSE.txt": "/Firebase_Test/static/js/2.7d5917e4.chunk.js.LICENSE.txt",
+    "static/media/stopwatch.9c85c92a.png": "/Firebase_Test/static/media/stopwatch.9c85c92a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4eca9cf1.js",
+    "static/js/2.7d5917e4.chunk.js",
+    "static/css/main.9fde857d.chunk.css",
+    "static/js/main.babbdb0a.chunk.js"
+  ]
+}
