@@ -11,9 +11,16 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Route path="/register" render={() => <Register isMobile={isMobile} />} />
+        <Route
+          path="/register"
+          render={() => <Register isMobile={isMobile} />}
+        />
         <Route path="/login" render={() => <Login isMobile={isMobile} />} />
         <Route exact path="/" render={() => <Login isMobile={isMobile} />} />
+        <Route
+          path="/Firebase_Test"
+          render={() => <Login isMobile={isMobile} />}
+        />
       </BrowserRouter>
     </div>
   );
