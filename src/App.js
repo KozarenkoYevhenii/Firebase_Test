@@ -10,7 +10,7 @@ const isMobile = window.innerWidth < MAX_MOBILE_WIDTH;
 const App = () => {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Route
           path="/register"
           render={() => <Register isMobile={isMobile} />}
