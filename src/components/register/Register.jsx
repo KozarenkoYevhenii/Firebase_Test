@@ -31,9 +31,10 @@ export default class Register extends React.Component {
       .catch((error) => console.log(error));
   };
   render() {
+    const { isAuth } = this.state;
     return (
       <div>
-        {this.state.isAuth ? (
+        {isAuth ? (
           <Login />
         ) : (
           <div>
