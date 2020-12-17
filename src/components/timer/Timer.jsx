@@ -2,14 +2,13 @@ import React from "react";
 import stopwatch from "../../assets/stopwatch.png";
 import firebase from "firebase";
 import Login from "../login/Login";
-
-const MAX_MOBILE_WIDTH = 600;
+import "./timer.css";
 
 export default class Timer extends React.Component {
   state = {
     desktopTime: 0,
     mobileTime: 0,
-    isMobile: window.innerWidth < MAX_MOBILE_WIDTH,
+    isMobile: this.props.isMobile,
     mobileIntervalId: null,
     desktopIntervalId: null,
     isAuth: true,
@@ -73,29 +72,40 @@ export default class Timer extends React.Component {
     }
   };
   render() {
-    const { desktopTime, mobileTime, isAuth } = this.state;
+    const { desktopTime, mobileTime, isAuth, isMobile } = this.state;
+    const classNameMod = isMobile ? "mobile" : "desktop";
     return (
       <div>
         {isAuth ? (
-          <div>
-            <div>
-              <button type="button" onClick={this.onLogout}>
-                Log out
-              </button>
-            </div>
-            <div>
-              <div>Desktop</div>
-              <div>
-                <img src={stopwatch} alt="Stopwacth" />
+          <div className={`timer-wrapper-${classNameMod}`}>
+            <button
+              className={`timer-logout-${classNameMod}`}
+              type="button"
+              onClick={this.onLogout}
+            >
+              Log out
+            </button>
+            <div className="timer-count-wrapper">
+              <div  className={`timer-count-${classNameMod}`}>Desktop</div>
+              <div className={`timer-logo-container-${classNameMod}`}>
+                <img
+                  className={`timer-logo-${classNameMod}`}
+                  src={stopwatch}
+                  alt="Stopwacth"
+                />
               </div>
-              <div>{this.formatTime(desktopTime)}</div>
+              <div className={`timer-count-${classNameMod}`}>{this.formatTime(desktopTime)}</div>
             </div>
-            <div>
-              <div>Mobile</div>
-              <div>
-                <img src={stopwatch} alt="Stopwacth" />
+            <div className="timer-count-wrapper">
+              <div className={`timer-count-${classNameMod}`}>Mobile</div>
+              <div className={`timer-logo-container-${classNameMod}`}>
+                <img
+                  className={`timer-logo-${classNameMod}`}
+                  src={stopwatch}
+                  alt="Stopwacth"
+                />
               </div>
-              <div>{this.formatTime(mobileTime)}</div>
+              <div className={`timer-count-${classNameMod}`}>{this.formatTime(mobileTime)}</div>
             </div>
           </div>
         ) : (

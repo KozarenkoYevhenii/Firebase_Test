@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import firebase from "firebase";
 import Login from "../login/Login";
+import "./register.css";
 
 export default class Register extends React.Component {
   state = {
@@ -10,6 +11,7 @@ export default class Register extends React.Component {
     email: "",
     password: "",
     isAuth: false,
+    isMobile: this.props.isMobile,
   };
   onInputChange = ({ target: { id, value } }) => {
     this.setState({ [id]: value });
@@ -25,26 +27,28 @@ export default class Register extends React.Component {
           .database()
           .ref("users/" + userId)
           .set({ firstName, lastName, desktopTime: 0, mobileTime: 0 });
-        
+
         this.setState({ isAuth: true });
       })
       .catch((error) => console.log(error));
   };
   render() {
-    const { isAuth } = this.state;
+    const { isAuth, isMobile } = this.state;
+    const classNameMod = isMobile ? "mobile" : "desktop";
     return (
-      <div>
+      <div className="register-wrapper">
         {isAuth ? (
           <Login />
         ) : (
-          <div>
-            <div>Register</div>
+          <div className={`register-form ${classNameMod}`}>
+            <div className="register-header">Register</div>
             <input
               id="firstName"
               type="text"
               value={this.state.firstName}
               placeholder="First Name"
               onChange={this.onInputChange}
+              className={`register-input-${classNameMod}`}
             />
             <input
               id="lastName"
@@ -52,6 +56,7 @@ export default class Register extends React.Component {
               value={this.state.lastName}
               placeholder="Last Name"
               onChange={this.onInputChange}
+              className={`register-input-${classNameMod}`}
             />
             <input
               id="email"
@@ -59,6 +64,7 @@ export default class Register extends React.Component {
               value={this.state.email}
               placeholder="Email"
               onChange={this.onInputChange}
+              className={`register-input-${classNameMod}`}
             />
             <input
               id="password"
@@ -66,13 +72,22 @@ export default class Register extends React.Component {
               value={this.state.password}
               placeholder="Password"
               onChange={this.onInputChange}
+              className={`register-input-${classNameMod}`}
             />
-            <button type="submit" onClick={this.onRegister}>
-              Sign up
-            </button>
-            <NavLink to="/login">
-              Already registered?<span>Log in</span>
-            </NavLink>
+            <div className={`register-button-wrapper-${classNameMod}`}>
+              <button
+                className={`register-button-${classNameMod}`}
+                type="submit"
+                onClick={this.onRegister}
+              >
+                Sign up
+              </button>
+            </div>
+            <div className={`register-redirect ${classNameMod}`}>
+              <NavLink to="/login">
+                Already registered? <span>Log in</span>
+              </NavLink>
+            </div>
           </div>
         )}
       </div>

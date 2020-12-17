@@ -2,12 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import firebase from "firebase";
 import Timer from "../timer/Timer";
+import "./login.css";
 
 export default class Login extends React.Component {
   state = {
     email: "",
     password: "",
     isAuth: false,
+    isMobile: this.props.isMobile,
   };
   onInputChange = ({ target: { id, value } }) => {
     this.setState({ [id]: value });
@@ -18,20 +20,22 @@ export default class Login extends React.Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        if(res) this.setState({ isAuth: true });
+        if (res) this.setState({ isAuth: true });
       })
       .catch((error) => console.log(error));
   };
   render() {
-    const { isAuth } = this.state;
+    const { isAuth, isMobile } = this.state;
+    const classNameMod = isMobile ? "mobile" : "desktop";
     return (
-      <div>
+      <div className="login-wrapper">
         {isAuth ? (
-          <Timer />
+          <Timer isMobile={this.props.isMobile} />
         ) : (
-          <div>
-            <div>Login</div>
+          <div className={`login-form ${classNameMod}`}>
+            <div className="login-header">Login</div>
             <input
+              className={`login-input-${classNameMod}`}
               id="email"
               type="email"
               value={this.state.email}
@@ -39,18 +43,27 @@ export default class Login extends React.Component {
               onChange={this.onInputChange}
             />
             <input
+              className={`login-input-${classNameMod}`}
               id="password"
               type="password"
               value={this.state.password}
               placeholder="Password"
               onChange={this.onInputChange}
             />
-            <button type="submit" onClick={this.onLogin}>
-              Login
-            </button>
-            <NavLink to="/register">
-              Don`t have an account yet?<span>Register</span>
-            </NavLink>
+            <div className={`login-button-wrapper-${classNameMod}`}>
+              <button
+                className={`login-button-${classNameMod}`}
+                type="submit"
+                onClick={this.onLogin}
+              >
+                Login
+              </button>
+            </div>
+            <div className={`login-redirect ${classNameMod}`}>
+              <NavLink to="/register">
+                Don`t have an account yet? <span>Register</span>
+              </NavLink>
+            </div>
           </div>
         )}
       </div>

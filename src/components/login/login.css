@@ -1,0 +1,111 @@
+::-webkit-input-placeholder {
+  color: black;
+}
+::-moz-placeholder {
+  color: black;
+} /* Firefox 19+ */
+:-moz-placeholder {
+  color: black;
+} /* Firefox 18- */
+:-ms-input-placeholder {
+  color: black;
+}
+
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5e5e5;
+}
+.login-form {
+    border-radius: 57px;
+    background-color: #c4c4c4;
+  }
+.login-form, .desktop {
+  height: 576px;
+  width: 588px;
+}
+.login-form, .mobile {
+  height: calc(100vh - 88px);
+  margin: 48px 20px 40px 20px;
+}
+.login-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 110px;
+  margin-bottom: 45px;
+  font-weight: 500;
+  font-size: 46px;
+  letter-spacing: 0.75%;
+}
+.login-input-desktop {
+  font-weight: 400;
+  font-size: 40px;
+  margin: 16px 0px 16px 72px;
+  background-color: #c4c4c4;
+  outline: none;
+  border: none;
+  color: black;
+}
+.login-input-mobile {
+  font-weight: 400;
+  font-size: 24px;
+  margin: 19px 0px 19px 52px;
+  background-color: #c4c4c4;
+  outline: none;
+  border: none;
+  color: black;
+}
+.login-button-wrapper-desktop {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+.login-button-wrapper-mobile {
+  display: flex;
+  justify-content: center;
+  margin-top: 149px;
+}
+.login-button-desktop {
+  background: #828282;
+  border-radius: 63px;
+  height: 73px;
+  width: 277px;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 40px;
+}
+.login-button-mobile {
+  background: #828282;
+  border-radius: 63px;
+  height: 47px;
+  width: 195px;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 24px;
+}
+.login-redirect {
+  display: flex;
+  justify-content: center;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400px;
+}
+.login-redirect,
+.desktop {
+  margin-top: 19px;
+  font-size: 20px;
+}
+.login-redirect,
+.mobile {
+  margin-top: 30px;
+  font-size: 15px;
+}
+.login-redirect a {
+  color: #88888c;
+}
+.login-redirect a span {
+  color: black;
+}

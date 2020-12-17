@@ -1,0 +1,112 @@
+::-webkit-input-placeholder {
+    color: black;
+  }
+  ::-moz-placeholder {
+    color: black;
+  } /* Firefox 19+ */
+  :-moz-placeholder {
+    color: black;
+  } /* Firefox 18- */
+  :-ms-input-placeholder {
+    color: black;
+  }
+  
+  .register-wrapper {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5e5e5;
+  }
+  .register-form {
+      border-radius: 57px;
+      background-color: #c4c4c4;
+    }
+  .register-form, .desktop {
+    height: 576px;
+    width: 588px;
+  }
+  .register-form, .mobile {
+    height: calc(100vh - 88px);
+    margin: 48px 20px 40px 20px;
+  }
+  .register-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 45px;
+    font-weight: 500;
+    font-size: 46px;
+    letter-spacing: 0.75%;
+  }
+  .register-input-desktop {
+    font-weight: 400;
+    font-size: 40px;
+    margin: 13px 0px 13px 72px;
+    background-color: #c4c4c4;
+    outline: none;
+    border: none;
+    color: black;
+  }
+  .register-input-mobile {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 21px 0px 21px 52px;
+    background-color: #c4c4c4;
+    outline: none;
+    border: none;
+    color: black;
+  }
+  .register-button-wrapper-desktop {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  .register-button-wrapper-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 149px;
+  }
+  .register-button-desktop {
+    background: #828282;
+    border-radius: 63px;
+    height: 73px;
+    width: 277px;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    font-size: 40px;
+  }
+  .register-button-mobile {
+    background: #828282;
+    border-radius: 63px;
+    height: 47px;
+    width: 195px;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    font-size: 24px;
+  }
+  .register-redirect {
+    display: flex;
+    justify-content: center;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400px;
+  }
+  .register-redirect,
+  .desktop {
+    margin-top: 19px;
+    font-size: 20px;
+  }
+  .register-redirect,
+  .mobile {
+    margin-top: 30px;
+    font-size: 15px;
+  }
+  .register-redirect a {
+    color: #88888c;
+  }
+  .register-redirect a span {
+    color: black;
+  }
+  
