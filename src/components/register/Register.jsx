@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import firebase from "firebase";
 import Login from "../login/Login";
 import "./register.css";
@@ -38,7 +38,10 @@ export default class Register extends React.Component {
     return (
       <div className="register-wrapper">
         {isAuth ? (
-          <Login />
+          <div>
+            <Redirect exact path="/" to="/login" />
+            <Login />
+          </div>
         ) : (
           <div className={`register-form ${classNameMod}`}>
             <div className="register-header">Register</div>

@@ -3,6 +3,7 @@ import stopwatch from "../../assets/stopwatch.png";
 import firebase from "firebase";
 import Login from "../login/Login";
 import "./timer.css";
+import { Redirect } from "react-router-dom";
 
 export default class Timer extends React.Component {
   state = {
@@ -13,19 +14,19 @@ export default class Timer extends React.Component {
     desktopIntervalId: null,
     isAuth: true,
   };
-  componentDidMount() {
-    const userId = firebase.auth().currentUser.uid;
-    firebase
-      .database()
-      .ref("users/" + userId)
-      .on("value", (elem) => {
-        this.setState({
-          desktopTime: elem.val().desktopTime,
-          mobileTime: elem.val().mobileTime,
-        });
-      });
-    this.startTimer();
-  }
+  // componentDidMount() {
+  //   const userId = firebase.auth().currentUser.uid;
+  //   firebase
+  //     .database()
+  //     .ref("users/" + userId)
+  //     .on("value", (elem) => {
+  //       this.setState({
+  //         desktopTime: elem.val().desktopTime,
+  //         mobileTime: elem.val().mobileTime,
+  //       });
+  //     });
+  //   this.startTimer();
+  // }
   componentDidUpdate() {
     const userId = firebase.auth().currentUser.uid;
     firebase
@@ -78,6 +79,7 @@ export default class Timer extends React.Component {
       <div>
         {isAuth ? (
           <div className={`timer-wrapper-${classNameMod}`}>
+            <Redirect path="/login" to="/timer" />
             <button
               className={`timer-logout-${classNameMod}`}
               type="button"
@@ -86,7 +88,7 @@ export default class Timer extends React.Component {
               Log out
             </button>
             <div className="timer-count-wrapper">
-              <div  className={`timer-count-${classNameMod}`}>Desktop</div>
+              <div className={`timer-count-${classNameMod}`}>Desktop</div>
               <div className={`timer-logo-container-${classNameMod}`}>
                 <img
                   className={`timer-logo-${classNameMod}`}
@@ -94,7 +96,9 @@ export default class Timer extends React.Component {
                   alt="Stopwacth"
                 />
               </div>
-              <div className={`timer-count-${classNameMod}`}>{this.formatTime(desktopTime)}</div>
+              <div className={`timer-count-${classNameMod}`}>
+                {this.formatTime(desktopTime)}
+              </div>
             </div>
             <div className="timer-count-wrapper">
               <div className={`timer-count-${classNameMod}`}>Mobile</div>
@@ -105,11 +109,16 @@ export default class Timer extends React.Component {
                   alt="Stopwacth"
                 />
               </div>
-              <div className={`timer-count-${classNameMod}`}>{this.formatTime(mobileTime)}</div>
+              <div className={`timer-count-${classNameMod}`}>
+                {this.formatTime(mobileTime)}
+              </div>
             </div>
           </div>
         ) : (
-          <Login />
+          <div>
+            <Redirect exact path="/" to="/login" />
+            <Login />
+          </div>
         )}
       </div>
     );
